@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 
-const AccInfoScreen = () => {
+const AcctInfoScreen = () => {
     return (
         <View>
             <Text>This is the Account Info Screen</Text>
