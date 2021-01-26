@@ -1,14 +1,12 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import AuthFrom from '../components/AuthForm'
 
 const SigninScreen = () => {
     return (
-        <View>
-            <Text>Sign In Screen</Text>
-        </View>
+        <AuthFrom 
+        authText="Sign In"
+        />
     )
 }
-
-const styles = StyleSheet.create({});
 
 export default SigninScreen
