@@ -1,14 +1,14 @@
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 
-const AcctInfoScreen = () => {
+const RecipeScreen = () => {
     return (
         <View>
-            <Text>This is the Account Info Screen</Text>
+            <Text>This is the Recipe Screen</Text>
         </View>
     )
 }
 
 const styles = StyleSheet.create({});
 
-export default AcctInfoScreen
+export default RecipeScreen

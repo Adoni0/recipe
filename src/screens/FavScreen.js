@@ -1,14 +1,14 @@
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 
-const GraphScreen = () => {
+const FavScreen = () => {
     return (
         <View>
-            <Text>This is the graphs screen</Text>
+            <Text>This is the favorites screen</Text>
         </View>
     )
 };
 
 const styles = StyleSheet.create({});
 
-export default GraphScreen
+export default FavScreen

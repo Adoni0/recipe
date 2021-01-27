@@ -4,8 +4,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import SignupScreen from './src/screens/SignupScreen';
 import SigninScreen from './src/screens/SigninScreen';
-import AcctInfoScreen from './src/screens/AcctInfoScreen';
-import GraphScreen from './src/screens/GraphScreen';
+import RecipeScreen from './src/screens/RecipeScreen';
+import FavScreen from './src/screens/FavScreen';
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
@@ -13,8 +13,8 @@ const switchNavigator = createSwitchNavigator({
     Signin: SigninScreen
   }),
   mainFlow: createBottomTabNavigator({
-    AcctInfo: AcctInfoScreen,
-    Graph: GraphScreen
+    Recipe: AcctInfoScreen,
+    Fav: GraphScreen
   })
 });
 
