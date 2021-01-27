@@ -2,6 +2,7 @@ import React from 'react'
 import createDataContext from './createDataContext'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import recipeApi from '../api/recipe'
+import { navigate } from '../navigationRef'
 
 const authReducer = (state, action) => {
     switch(action.type) {
@@ -14,15 +15,26 @@ const authReducer = (state, action) => {
     }
 };
 
+const trySignInOnMount = dispatch => async () => {
+    const token = await AsyncStorage.getItem('token');
+    if (token){
+        dispatch({ type: 'signin', payload: token });
+        navigate('mainFlow');
+    } else {
+        navigate('loginFlow');
+    }
+};
+
 const signup = dispatch => async ({ email, password }) => {
     try {
-        const reponse = await recipeApi.post('/signup', { email, password });
+        const response = await recipeApi.post('/signup', { email, password });
         await AsyncStorage.setItem('token', response.data.token);
         dispatch({ type: 'signin', payload: response.data.token });
+        navigate('mainFlow');
     } catch (err) {
         dispatch({ type: 'add_error', payload: 'Issue with sign up' })
     }
-}
+};
 
 const signin = dispatch => async({ email, password }) => {
 
@@ -30,6 +42,7 @@ const signin = dispatch => async({ email, password }) => {
         const response = await recipeApi.post('/signin', { email, password });
         await AsyncStorage.setItem('token', response.data.token);
         dispatch({ type: 'signin', payload: response.data.token });
+        navigate('mainFlow');
     } catch (err) {
         dispatch({ type: 'add_error', payload: 'Issue with sign in!' })
     }
@@ -38,6 +51,6 @@ const signin = dispatch => async({ email, password }) => {
 
 export const { Context, Provider } = createDataContext(
     authReducer,
-    { signin, signup },
+    { signin, signup, trySignInOnMount },
     { token: null, errorMessage: '' }
-)
+);
