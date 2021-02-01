@@ -1,34 +1,44 @@
-import React, { useReducer } from 'react'
+import React from 'react'
 import createDataContext from './createDataContext'
 import recipeApi from '../api/recipe'
 
 const recipeReducer = (state, action) => {
-    switch(action.type){
-        case 'add_favorite':
-            return { ...state, favs: [action.payload] }
+    switch (action.type) {
+        case 'get_list':
+            return { ...state, list: [...action.payload] }
+        case 'get_favs':
+            return { ...state, favs: [...action.payload] }
+        case 'add_error':
+            return { errorMessage: action.payload }
         default:
             return state;
     }
 };
 
-const addFavorite = dispatch => async({ recipe }) => {
-    try { //need to also post to server and database
-        dispatch({ type: 'add_favorite', payload: recipe })
+const addFavorite = dispatch => async (ingredients, instructions, title, image) => {
+    try {
+        await recipeApi.post('/favs', { ingredients, instructions, title, image });
     } catch (err) {
         dispatch({ type: 'add_error', payload: 'Could not add to favorites' })
     }
 };
 
-const getFavorites = dispatch => async() => {};
+const getFavorites = dispatch => async () => {
+    const response = await recipeApi.get('/favs');
+    dispatch({ type: 'get_favs', payload: response.data });
+};
 
-const getList = dispatch => async() => {};
+const getList = dispatch => async () => {
+    const response = await recipeApi.get('/shoplist');
+    dispatch({ type: 'get_list', payload: response.data });
+};
 
-const addToList = dispatch => async() => {
-
+const addToList = dispatch => async (ingredient) => {
+    await recipeApi.post('/shoplist', { ingredient });
 };
 
 export const { Context, Provoider } = createDataContext(
     recipeReducer,
-    { addFavorite, addToList },
-    { favs: [], list: [] }
+    { addFavorite, addToList, getFavorites, getList },
+    { favs: [], list: [], errorMessage: '' }
 );
