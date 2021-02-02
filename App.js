@@ -8,15 +8,18 @@ import RecipeScreen from './src/screens/RecipeScreen';
 import FavScreen from './src/screens/FavScreen';
 import { Provider as AuthProvider } from './src/context/AuthContext';
 import { Provider as RecipeProvider } from './src/context/RecipeContext';
+import { setNavigator } from './src/navigationRef';
+import AttemptSignin from './src/screens/AttemptSignin';
 
 const switchNavigator = createSwitchNavigator({
+  AttemptSignin: AttemptSignin,
   loginFlow: createStackNavigator({
     Signup: SignupScreen,
     Signin: SigninScreen
   }),
   mainFlow: createBottomTabNavigator({
-    Recipe: AcctInfoScreen,
-    Fav: GraphScreen
+    Recipe: RecipeScreen,
+    Fav: FavScreen
   })
 });
 
@@ -26,7 +29,11 @@ export default () => {
   return (
     <AuthProvider>
       <RecipeProvider>
-        <App />
+        <App
+          ref={(navigator) => {
+            setNavigator(navigator);
+          }}
+        />
       </RecipeProvider>
     </AuthProvider>
   );

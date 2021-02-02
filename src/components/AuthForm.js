@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { Input, Text, Button } from 'react-native-elements';
 import { MaterialIcons, Entypo } from '@expo/vector-icons';
 
-const AuthForm = ({ authText, submit }) => {
+const AuthForm = ({ authText, submit, errorMessage }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -31,9 +31,12 @@ const AuthForm = ({ authText, submit }) => {
                 }
                 secureTextEntry={true}
             />
+            {errorMessage ?
+                <Text style={styles.errorMessage}>{errorMessage}</Text> 
+                : null}
             <Button
                 title="Submit"
-                onPress={submit}
+                onPress={() => submit({ email, password })}
             />
         </View>
     )
@@ -43,7 +46,13 @@ const styles = StyleSheet.create({
     input: {
         marginHorizontal: 15,
         marginVertical: 100
-    }
+    },
+    errorMessage: {
+        fontSize: 16,
+        color: 'red',
+        marginLeft: 15,
+        marginTop: 15
+      }
 });
 
 export default AuthForm

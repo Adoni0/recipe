@@ -4,7 +4,7 @@ import { withNavigation } from 'react-navigation'
 
 function Navlink({ navigation, linkText, routeName }) {
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('mainFlow')}>
+        <TouchableOpacity onPress={() => navigation.navigate(routeName)}>
             <Text style={styles.link}>{linkText}</Text>
         </TouchableOpacity>
     )
