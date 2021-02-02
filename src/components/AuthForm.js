@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { Input, Text, Button } from 'react-native-elements';
 import { MaterialIcons, Entypo } from '@expo/vector-icons';
 
-const AuthForm = ({ authText }) => {
+const AuthForm = ({ authText, submit }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -33,6 +33,7 @@ const AuthForm = ({ authText }) => {
             />
             <Button
                 title="Submit"
+                onPress={submit}
             />
         </View>
     )

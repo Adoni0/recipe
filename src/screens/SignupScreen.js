@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { View, StyleSheet } from 'react-native'
+import { NavigationEvents } from 'react-navigation';
 import AuthForm from '../components/AuthForm'
+import { Context } from '../context/AuthContext'
 
 const SignupScreen = () => {
+    const { state, signup, clearErrorMessage } = useContext(Context);
+
     return (
-        <AuthForm 
-        authText="Sign Up Here"
-        />
+        <View>
+            <NavigationEvents onWillBlur={clearErrorMessage} />
+            <AuthForm
+                authText="Sign Up Here"
+                submit={signup}
+            />
+        </View>
     )
 };
 

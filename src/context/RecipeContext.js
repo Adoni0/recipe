@@ -37,7 +37,7 @@ const addToList = dispatch => async (ingredient) => {
     await recipeApi.post('/shoplist', { ingredient });
 };
 
-export const { Context, Provoider } = createDataContext(
+export const { Context, Provider } = createDataContext(
     recipeReducer,
     { addFavorite, addToList, getFavorites, getList },
     { favs: [], list: [], errorMessage: '' }
