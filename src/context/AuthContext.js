@@ -1,4 +1,3 @@
-import React from 'react'
 import createDataContext from './createDataContext'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import recipeApi from '../api/recipe'
@@ -55,7 +54,7 @@ const clearErrorMessage = dispatch => async() => {
     dispatch({ type: 'clear_error', payload: '' })
 }
 
-export const { Context, Provider } = createDataContext(
+export const { Provider, Context } = createDataContext(
     authReducer,
     { signin, signup, trySignInOnMount, clearErrorMessage },
     { token: null, errorMessage: '' }

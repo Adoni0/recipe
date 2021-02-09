@@ -27,14 +27,14 @@ const App = createAppContainer(switchNavigator);
 
 export default () => {
   return (
-    <AuthProvider>
-      <RecipeProvider>
+    <RecipeProvider>
+      <AuthProvider>
         <App
           ref={(navigator) => {
             setNavigator(navigator);
           }}
         />
-      </RecipeProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </RecipeProvider>
   );
 };

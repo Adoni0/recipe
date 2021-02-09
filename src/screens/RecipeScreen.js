@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import RecipeSearchBar from '../components/RecipeSearchBar'
-import RecipeCarousel from '../components/RecipeCarousel'
+// import RecipeCarousel from '../components/RecipeCarousel'
 
 const RecipeScreen = () => {
     const [searchTerm, setSearchTerm] = useState('');

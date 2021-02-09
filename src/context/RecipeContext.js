@@ -1,4 +1,3 @@
-import React from 'react'
 import createDataContext from './createDataContext'
 import recipeApi from '../api/recipe'
 
@@ -37,7 +36,7 @@ const addToList = dispatch => async (ingredient) => {
     await recipeApi.post('/shoplist', { ingredient });
 };
 
-export const { Context, Provider } = createDataContext(
+export const { Provider, Context } = createDataContext(
     recipeReducer,
     { addFavorite, addToList, getFavorites, getList },
     { favs: [], list: [], errorMessage: '' }

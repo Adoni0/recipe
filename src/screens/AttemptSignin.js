@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { Context } from '../context/AuthContext'
 
-function AttemptSignin() {
+const AttemptSignin = () => {
     const { trySignInOnMount } = useContext(Context);
 
     useEffect(() => {

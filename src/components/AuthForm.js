@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { Input, Text, Button } from 'react-native-elements';
 import { MaterialIcons, Entypo } from '@expo/vector-icons';
 
-const AuthForm = ({ authText, submit, errorMessage }) => {
+const AuthForm = ({ authText, submit, errorMessage, submitButtonText }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -35,7 +35,7 @@ const AuthForm = ({ authText, submit, errorMessage }) => {
                 <Text style={styles.errorMessage}>{errorMessage}</Text> 
                 : null}
             <Button
-                title="Submit"
+                title={submitButtonText}
                 onPress={() => submit({ email, password })}
             />
         </View>

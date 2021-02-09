@@ -5,7 +5,7 @@ import AuthForm from '../components/AuthForm'
 import { Context } from '../context/AuthContext'
 import Navlink from '../components/Navlink'
 
-const SignupScreen = () => {
+const SignupScreen = ({ navigation }) => {
     const { state, signup, clearErrorMessage } = useContext(Context);
 
     return (
@@ -13,6 +13,7 @@ const SignupScreen = () => {
             <NavigationEvents onWillBlur={clearErrorMessage} />
             <AuthForm
                 authText="Sign Up Here"
+                submitButtonText="Sign Up"
                 submit={signup}
                 errorMessage={state.errorMessage}
             />
