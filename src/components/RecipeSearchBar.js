@@ -5,6 +5,7 @@ import { SearchBar } from 'react-native-elements';
 const RecipeSearchBar = ({ term, setTerm }) => {
     return (
         <SearchBar
+        lightTheme
         placeholder="Search Recipes..."
         onChangeText={setTerm}
         value={term}

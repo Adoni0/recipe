@@ -10,19 +10,25 @@ const SignupScreen = ({ navigation }) => {
 
     return (
         <View>
-            <NavigationEvents onWillBlur={clearErrorMessage} />
+            <NavigationEvents onWillFocus={clearErrorMessage} />
             <AuthForm
                 authText="Sign Up Here"
                 submitButtonText="Sign Up"
                 submit={signup}
                 errorMessage={state.errorMessage}
             />
-            <Navlink 
-            linkText="Already have an account? Sign in here"
-            routeName="Signin"
+            <Navlink
+                linkText="Already have an account? Sign in here"
+                routeName="Signin"
             />
         </View>
     )
+};
+
+SignupScreen.navigationOptions = () => {
+    return {
+        headerShown: false,
+    };
 };
 
 

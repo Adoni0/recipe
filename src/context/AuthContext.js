@@ -27,6 +27,7 @@ const trySignInOnMount = dispatch => async () => {
 };
 
 const signup = dispatch => async ({ email, password }) => {
+    console.log({ email, password })
     try {
         const response = await recipeApi.post('/signup', { email, password });
         await AsyncStorage.setItem('token', response.data.token);

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { View, StyleSheet } from 'react-native'
-import AuthFrom from '../components/AuthForm'
+import AuthForm from '../components/AuthForm'
 import { Context } from '../context/AuthContext'
 import { NavigationEvents } from 'react-navigation'
 import Navlink from '../components/Navlink'
@@ -11,7 +11,7 @@ const SigninScreen = ({ navigation }) => {
     return (
         <View>
             <NavigationEvents onWillBlur={clearErrorMessage} />
-            <AuthFrom
+            <AuthForm
                 authText="Sign In For Delicious Recipes"
                 submitButtonText="Sign In"
                 submit={signin}
@@ -23,6 +23,10 @@ const SigninScreen = ({ navigation }) => {
             />
         </View>
     )
+};
+
+SigninScreen.navigationOptions = {
+    headerShown: false,
 };
 
 const styles = StyleSheet.create({});
