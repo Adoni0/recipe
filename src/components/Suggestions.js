@@ -6,10 +6,9 @@ import spoonacularApi from '../api/spoonacular'
 const Suggestions = () => {
 
     const suggestionSearch = (suggestion) => {
-        console.log(process.env.EXPO_API_KEY)
-        // spoonacularApi.searchRecipe(suggestion)
-        // .then(res => console.log(res))
-        // .catch(err => console.log(err))
+        spoonacularApi.searchRecipe(suggestion)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
     }
 
     return (

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-var apiKey = process.env.REACT_APP_API_KEY;
+var apiKey = '01a5f6f74eeb4a099a4e1fb4bd39efcb';
 
 export default {
     searchRecipe: (term) => {
@@ -13,6 +13,6 @@ export default {
         return axios.get(`https://api.spoonacular.com/recipes/${id}/analyzedInstructions&apiKey=${apiKey}`)
     },
     randomRecipes: () => {
-        return axios.get(`https://api.spoonacular.com/recipes/random&apiKey=${apiKey}`)
+        return axios.get(`https://api.spoonacular.com/recipes/random?number=10&apiKey=${apiKey}`)
     }
 }
