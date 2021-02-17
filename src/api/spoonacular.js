@@ -13,6 +13,6 @@ export default {
         return axios.get(`https://api.spoonacular.com/recipes/${id}/analyzedInstructions&apiKey=${apiKey}`)
     },
     randomRecipes: () => {
-        return axios.get(`https://api.spoonacular.com/recipes/random?number=10&apiKey=${apiKey}`)
+        return axios.get(`https://api.spoonacular.com/recipes/complexSearch?sort=random?number=10&apiKey=${apiKey}`)
     }
 }

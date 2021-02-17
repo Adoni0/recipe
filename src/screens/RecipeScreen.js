@@ -9,12 +9,29 @@ import spoonacularApi from '../api/spoonacular'
 
 const RecipeScreen = () => {
     const [searchTerm, setSearchTerm] = useState('');
+    // const [recipes, setRecipes] = useState([]);
 
-    // useEffect(() => {
-    //     spoonacularApi.randomRecipes()
-    //     .then(res => console.log(res.data.recipes))
-    //     .catch(err => console.log(err))
-    // }, [])
+    const [row1, setRow1] = useState([]);
+    const [row2, setRow2] = useState([]);
+
+    useEffect(() => {
+        spoonacularApi.randomRecipes()
+        .then(res => {
+            const allRecipes = res.data.results;
+            var half = allRecipes.length / 2;
+            var firstRow = allRecipes.filter(recipe => allRecipes.indexOf(recipe) <= (half - 1));
+            var secondRow = allRecipes.filter(recipe => allRecipes.indexOf(recipe) > (half - 1));
+            setRow1(firstRow);
+            setRow2(secondRow);
+        })
+        .catch(err => console.log(err))
+    }, [])
+
+    const searchByTerm = () => {
+        spoonacularApi.searchRecipe(searchTerm)
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err))
+    }
 
     return (
         <View style={styles.recipe}>
@@ -25,8 +42,8 @@ const RecipeScreen = () => {
             <Suggestions />
 
             <View style={styles.carouselContainer}>
-                <RecipeCarousel />
-                <RecipeCarousel />
+                <RecipeCarousel recipes={row1}/>
+                <RecipeCarousel recipes={row2}/>
             </View>
             <Button
                     icon={
