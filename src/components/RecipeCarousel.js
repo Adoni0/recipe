@@ -4,9 +4,9 @@ import { View, Text, Image, StyleSheet, FlatList } from 'react-native'
 import { Card } from 'react-native-elements'
 import { AntDesign } from '@expo/vector-icons';
 
-const RecipeCarousel = ({ recipes }) => {
+const RecipeCarousel = ({ recipes, addFav }) => {
 
-    if(!recipes.length) {
+    if (!recipes.length) {
         return null
     }
 
@@ -19,7 +19,12 @@ const RecipeCarousel = ({ recipes }) => {
             renderItem={({ item }) => {
                 return (
                     <View style={styles.card}>
-                        <AntDesign style={styles.icon} name="heart" size={35} color="white" />
+                        <AntDesign
+                            onPress={() => addFav(item.id, item.title, item.image)}
+                            style={styles.icon}
+                            name="heart" size={35}
+                            color="white"
+                        />
                         <Image source={{ uri: item.image }}
                             style={styles.image}
                         />
