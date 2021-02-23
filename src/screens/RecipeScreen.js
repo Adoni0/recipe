@@ -7,10 +7,10 @@ import RecipeCarousel from '../components/RecipeCarousel'
 import { FontAwesome } from '@expo/vector-icons';
 import spoonacularApi from '../api/spoonacular'
 import { Context as RecipeContext } from '../context/RecipeContext'
+import recipeSplit from '../utils/recipeSplit'
 
 const RecipeScreen = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    // const [recipes, setRecipes] = useState([]);
     const { addFavorite } = useContext(RecipeContext);
 
     const [row1, setRow1] = useState([]);
@@ -19,13 +19,9 @@ const RecipeScreen = () => {
     useEffect(() => {
         spoonacularApi.randomRecipes()
             .then(res => {
-                const allRecipes = res.data.recipes;
-                // console.log(allRecipes[0].image)
-                var half = allRecipes.length / 2;
-                var firstRow = allRecipes.filter(recipe => allRecipes.indexOf(recipe) <= (half - 1));
-                var secondRow = allRecipes.filter(recipe => allRecipes.indexOf(recipe) > (half - 1));
-                setRow1(firstRow);
-                setRow2(secondRow);
+                const { row1, row2 } = recipeSplit(res.data.recipes)
+                setRow1(row1[0])
+                setRow2(row2[0])
             })
             .catch(err => console.log(err))
     }, [])
@@ -33,12 +29,9 @@ const RecipeScreen = () => {
     const suggestionSearch = (suggestion) => {
         spoonacularApi.searchRecipe(suggestion)
             .then(res => {
-                const allRecipes = res.data.results;
-                var half = allRecipes.length / 2;
-                var firstRow = allRecipes.filter(recipe => allRecipes.indexOf(recipe) <= (half - 1));
-                var secondRow = allRecipes.filter(recipe => allRecipes.indexOf(recipe) > (half - 1));
-                setRow1(firstRow);
-                setRow2(secondRow);
+                const { row1, row2 } = recipeSplit(res.data.results)
+                setRow1(row1[0])
+                setRow2(row2[0])
             })
             .catch(err => console.log(err))
     }
@@ -46,12 +39,9 @@ const RecipeScreen = () => {
     const searchByTerm = () => {
         spoonacularApi.searchRecipe(searchTerm)
             .then(res => {
-                const allRecipes = res.data.results;
-                var half = allRecipes.length / 2;
-                var firstRow = allRecipes.filter(recipe => allRecipes.indexOf(recipe) <= (half - 1));
-                var secondRow = allRecipes.filter(recipe => allRecipes.indexOf(recipe) > (half - 1));
-                setRow1(firstRow);
-                setRow2(secondRow);
+                const { row1, row2 } = recipeSplit(res.data.results)
+                setRow1(row1[0])
+                setRow2(row2[0])
             })
             .catch(err => console.log(err))
     }
