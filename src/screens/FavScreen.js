@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import { Context as RecipeContext } from '../context/RecipeContext'
-import FavCarousel from '../components/FavCarousel'
+// import FavCarousel from '../components/FavCarousel'
 
 const FavScreen = () => {
 
-    const { state, getFavorites } = useContext(RecipeContext)
+    const { state: { favs }, getFavorites } = useContext(RecipeContext)
 
     useEffect(() => {
         getFavorites()

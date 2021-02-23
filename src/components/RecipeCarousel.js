@@ -22,7 +22,8 @@ const RecipeCarousel = ({ recipes, addFav }) => {
                         <AntDesign
                             onPress={() => addFav(item.id, item.title, item.image)}
                             style={styles.icon}
-                            name="heart" size={35}
+                            name="heart" 
+                            size={35}
                             color="white"
                         />
                         <Image source={{ uri: item.image }}

@@ -19,7 +19,8 @@ const RecipeScreen = () => {
     useEffect(() => {
         spoonacularApi.randomRecipes()
             .then(res => {
-                const allRecipes = res.data.results;
+                const allRecipes = res.data.recipes;
+                // console.log(allRecipes[0].image)
                 var half = allRecipes.length / 2;
                 var firstRow = allRecipes.filter(recipe => allRecipes.indexOf(recipe) <= (half - 1));
                 var secondRow = allRecipes.filter(recipe => allRecipes.indexOf(recipe) > (half - 1));
@@ -28,6 +29,19 @@ const RecipeScreen = () => {
             })
             .catch(err => console.log(err))
     }, [])
+
+    const suggestionSearch = (suggestion) => {
+        spoonacularApi.searchRecipe(suggestion)
+            .then(res => {
+                const allRecipes = res.data.results;
+                var half = allRecipes.length / 2;
+                var firstRow = allRecipes.filter(recipe => allRecipes.indexOf(recipe) <= (half - 1));
+                var secondRow = allRecipes.filter(recipe => allRecipes.indexOf(recipe) > (half - 1));
+                setRow1(firstRow);
+                setRow2(secondRow);
+            })
+            .catch(err => console.log(err))
+    }
 
     const searchByTerm = () => {
         spoonacularApi.searchRecipe(searchTerm)
@@ -41,7 +55,7 @@ const RecipeScreen = () => {
                 term={searchTerm}
                 setTerm={setSearchTerm}
             />
-            <Suggestions />
+            <Suggestions suggestionSearch={suggestionSearch} />
 
             <View style={styles.carouselContainer}>
                 <RecipeCarousel

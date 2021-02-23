@@ -17,6 +17,7 @@ const recipeReducer = (state, action) => {
 const addFavorite = dispatch => async (recipeId, title, image) => {
     try {
         await recipeApi.post('/favs', { recipeId, title, image });
+        console.log(recipeId, title, image)
     } catch (err) {
         dispatch({ type: 'add_error', payload: 'Could not add to favorites' })
     }
