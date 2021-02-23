@@ -45,13 +45,21 @@ const RecipeScreen = () => {
 
     const searchByTerm = () => {
         spoonacularApi.searchRecipe(searchTerm)
-            .then(res => console.log(res.data))
+            .then(res => {
+                const allRecipes = res.data.results;
+                var half = allRecipes.length / 2;
+                var firstRow = allRecipes.filter(recipe => allRecipes.indexOf(recipe) <= (half - 1));
+                var secondRow = allRecipes.filter(recipe => allRecipes.indexOf(recipe) > (half - 1));
+                setRow1(firstRow);
+                setRow2(secondRow);
+            })
             .catch(err => console.log(err))
     }
 
     return (
         <View style={styles.recipe}>
             <RecipeSearchBar
+                searchByTerm={searchByTerm}
                 term={searchTerm}
                 setTerm={setSearchTerm}
             />
