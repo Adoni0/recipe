@@ -11,7 +11,7 @@ import recipeSplit from '../utils/recipeSplit'
 
 const RecipeScreen = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const { addFavorite } = useContext(RecipeContext);
+    const { state: { errorMessage }, addFavorite } = useContext(RecipeContext);
 
     const [row1, setRow1] = useState([]);
     const [row2, setRow2] = useState([]);
@@ -54,6 +54,8 @@ const RecipeScreen = () => {
                 setTerm={setSearchTerm}
             />
             <Suggestions suggestionSearch={suggestionSearch} />
+
+            {errorMessage && <Text>{errorMessage}</Text>}
 
             <View style={styles.carouselContainer}>
                 <RecipeCarousel

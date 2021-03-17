@@ -8,13 +8,14 @@ const recipeReducer = (state, action) => {
         case 'get_favs':
             return { ...state, favs: [...action.payload] }
         case 'add_error':
-            return { errorMessage: action.payload }
+            return { ...state, errorMessage: action.payload }
         default:
             return state;
     }
 };
 
 const addFavorite = dispatch => async (recipeId, title, image) => {
+    console.log('this function ran')
     try {
         await recipeApi.post('/favs', { recipeId, title, image });
         console.log(recipeId, title, image)
